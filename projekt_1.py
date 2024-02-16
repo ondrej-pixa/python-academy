@@ -4,3 +4,28 @@ author: Ondrej Pixa
 email: ondrej.pixa@gmail.com
 discord: ondra_32
 """
+
+users = {
+    "bob": "123",
+    "ann": "pass123",
+    "mike": "password123",
+    "liz": "pass123",
+}
+
+print("username:", end="")
+username = input()
+print("password:", end="")
+password = input()
+
+is_registered = (username in users) and (users[username] == password)
+
+if not is_registered:
+    print("unregistered user, terminating the program..")
+    exit()
+
+welcome_text = '''----------------------------------------
+Welcome to the app, bob
+We have 3 texts to be analyzed.
+----------------------------------------
+'''
+print(welcome_text)
