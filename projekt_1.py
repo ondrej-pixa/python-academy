@@ -28,4 +28,17 @@ Welcome to the app, bob
 We have 3 texts to be analyzed.
 ----------------------------------------
 '''
-print(welcome_text)
+print(welcome_text, end="")
+
+print("Enter a number btw. 1 and 3 to select: ", end="")
+number_str = input()
+if not number_str.isdigit():
+    print("Not a number, terminating the program..")
+    exit()
+
+number = int(number_str)
+if not (1 <= number <= 3):
+    print("Number must be btw. 1 and 3, terminating the program..")
+    exit()
+
+print("----------------------------------------")
