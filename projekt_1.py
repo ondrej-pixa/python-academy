@@ -84,6 +84,9 @@ frequency = {}
 max_length = 0
 
 for word in words:
+    word = word.replace(',', '')
+    word = word.replace('.', '')
+
     if word.istitle():
         titlecase_words_count += 1
     if word.isupper() and word.isalpha():
@@ -114,4 +117,5 @@ LEN|  OCCURENCES  |NR.
 print(header)
 
 for length in range(1,max_length+1):
-    print(length,"|","*"*length,"|",frequency.get(length, 0))
+    f = frequency.get(length, 0)
+    print(length,"|","*"*f,"|",f)
