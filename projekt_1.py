@@ -80,6 +80,8 @@ uppercase_words_count = 0
 lowercase_words_count = 0
 numeric_strings_count = 0
 sum_of_numbers = 0
+frequency = {}
+max_length = 0
 
 for word in words:
     if word.istitle():
@@ -92,9 +94,24 @@ for word in words:
         numeric_strings_count += 1
         sum_of_numbers += int(word)
 
+    length = len(word)
+    frequency[length] = frequency.get(length, 0) + 1
+    if length > max_length:
+        max_length=length
+
+
 print(f"There are {words_count} words in the selected text.")
 print(f"There are {titlecase_words_count} titlecase words.")
 print(f"There are {uppercase_words_count} uppercase words.")
 print(f"There are {lowercase_words_count} lowercase words.")
 print(f"There are {numeric_strings_count} numeric strings.")
 print(f"The sum of all the numbers {sum_of_numbers}")
+
+header = '''----------------------------------------
+LEN|  OCCURENCES  |NR.
+----------------------------------------'''
+
+print(header)
+
+for length in range(1,max_length+1):
+    print(length,"|","*"*length,"|",frequency.get(length, 0))
