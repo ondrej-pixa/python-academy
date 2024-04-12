@@ -80,7 +80,7 @@ uppercase_words_count = 0
 lowercase_words_count = 0
 numeric_strings_count = 0
 sum_of_numbers = 0
-frequency = {}
+frequency_dictionary = {}
 max_length = 0
 
 for word in words:
@@ -98,10 +98,9 @@ for word in words:
         sum_of_numbers += int(word)
 
     length = len(word)
-    frequency[length] = frequency.get(length, 0) + 1
+    frequency_dictionary[length] = frequency_dictionary.get(length, 0) + 1
     if length > max_length:
-        max_length=length
-
+        max_length = length
 
 print(f"There are {words_count} words in the selected text.")
 print(f"There are {titlecase_words_count} titlecase words.")
@@ -110,12 +109,26 @@ print(f"There are {lowercase_words_count} lowercase words.")
 print(f"There are {numeric_strings_count} numeric strings.")
 print(f"The sum of all the numbers {sum_of_numbers}")
 
-header = '''----------------------------------------
-LEN|  OCCURENCES  |NR.
-----------------------------------------'''
+max_frequency = 0
+for frequency in frequency_dictionary.values():
+    if frequency > max_frequency:
+        max_frequency = frequency
 
-print(header)
+left_column_width = max(len("LEN"), len(str(max_length)))
+middle_column_width = max(len("  OCCURENCES  "), max_frequency)
 
-for length in range(1,max_length+1):
-    f = frequency.get(length, 0)
-    print(length,"|","*"*f,"|",f)
+left_column_header = "LEN".rjust(left_column_width)
+middle_column_header = "  OCCURENCES  ".center(middle_column_width)
+right_column_header = "NR."
+
+print("----------------------------------------")
+print(f"{left_column_header}|{middle_column_header}|{right_column_header}")
+print("----------------------------------------")
+
+for length in range(1, max_length + 1):
+    frequency = frequency_dictionary.get(length, 0)
+    left_column = str(length).rjust(left_column_width)
+    middle_column = ("*" * frequency).ljust(middle_column_width)
+    right_column = frequency
+
+    print(f"{left_column}|{middle_column}|{right_column}")
