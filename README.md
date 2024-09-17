@@ -1,5 +1,1 @@
-# project-1
-
-Engeto project
-
-## section 1
+# Python academy
